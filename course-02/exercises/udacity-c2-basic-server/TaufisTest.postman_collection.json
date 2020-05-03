@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "f964db2f-9647-4e12-b2b4-2d53c69d257d",
+		"name": "TaufisTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/cars/all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b9dfe53d-070b-4703-8a3a-edad3628756e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Taufi\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/persons/Tanja",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"persons",
+						"Tanja"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/cars/addCar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "67fcd612-c56e-482c-8fb4-dcf429887bd3",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"make\": \"bmw\",\n\t\"type\": \"540 X\",\n\t\"model\": \"Limousine\",\n\t\"cost\": 83,\n\t\"id\": 4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/cars/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"cars",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/cars/filterMake",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "93c0b68f-54d6-4aaa-89a5-35bb6cc55443",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"make\": \"BMW\",\n\t\"type\": \"540 X\",\n\t\"model\": \"Limousine\",\n\t\"cost\": 83,\n\t\"id\": 4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/cars/?make=tesla",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"cars",
+						""
+					],
+					"query": [
+						{
+							"key": "make",
+							"value": "tesla"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/cars/2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d9e458f5-81d0-4c2f-96eb-af6d1b4bca03",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Taufi\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8082/cars/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"cars",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8082/Taufi",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d4a11ebf-eb5b-41f8-85c3-549905f9352b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Welcome to the Cloud, Taufi!\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8082/persons/Taufi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"persons",
+						"Taufi"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

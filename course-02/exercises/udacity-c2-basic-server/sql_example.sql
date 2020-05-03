@@ -15,6 +15,7 @@ INSERT INTO "public"."cars" ("type", "model", "cost", "make_id") VALUES
 	('sedan', 'roadster', '33', '2'),
 	('sedan', 'prius', '22', '1'),
 	('sedan', 'focus', '18', '3'),
+    ('540', 'limousine', '83', '4'),
 	('suv', 'highlander', '40', '1');
   
 CREATE TABLE "public"."make" (

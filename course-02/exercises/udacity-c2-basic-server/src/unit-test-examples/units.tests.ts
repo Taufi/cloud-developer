@@ -1,4 +1,4 @@
-import { add, divide } from './units';
+import { add, divide, kdConcat } from './units';
 
 import { expect } from 'chai';
 import 'mocha';
@@ -31,6 +31,19 @@ describe('divide', () => {
 
   it('should throw an error if div by zero', () => {
     expect(()=>{ divide(5,0) }).to.throw('div by 0')
+  });
+
+});
+
+describe('kdConcat', () => {
+
+  it('shoult concat Taufi', () => {
+    const result = kdConcat("Taufi ist ein kluges ", "Köpfchen");
+    expect(result).to.equal("Taufi ist ein kluges Köpfchen")
+  });
+
+  it('silly things are forbiiden', () => {
+    expect(() => { kdConcat("s", "") }).to.throw("silly things are forbidden")
   });
 
 });

@@ -10,6 +10,15 @@ export const divide = (a: number, b: number) => {
     return a / b;
     }
 
+export const kdConcat = (str1: string, str2: string) => {
+
+    if (str1.length == 0 || str2.length == 0) {
+        throw new Error('silly things are forbidden')
+    }
+    
+    return str1.concat(str2);
+    }
+
 // @TODO try creating a method "concat" to concatenate two strings
 // it should take two string paramaters.
 // it should return one string combining the two strings.
