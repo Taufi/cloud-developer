@@ -18,13 +18,57 @@ router.get('/', async (req: Request, res: Response) => {
 
 //@TODO
 //Add an endpoint to GET a specific resource by Primary Key
+router.get('/:id', async (req: Request, res: Response) => {
+    let { id } = req.params;
+    const item = await FeedItem.findByPk(id);
+    if ( !item ) {
+        return res.status(404)
+                  .send(`Item not found`);
+      }
+    if(item.url) {
+        item.url = AWS.getGetSignedUrl(item.url);
+    }
+    res.status(200).send(item);
+});
 
 // update a specific resource
 router.patch('/:id', 
     requireAuth, 
     async (req: Request, res: Response) => {
         //@TODO try it yourself
-        res.send(500).send("not implemented")
+    let { id } = req.params;
+    // const item = await FeedItem.findByPk(id);
+    // if ( !item ) {
+    //     return res.status(404)
+    //               .send(`Item not found`);
+    //   }
+    let { caption, url } = req.body;
+    
+    if ( !(caption && url ) ) {
+      return res.status(400)
+                .send(`name and url required`);
+    }
+    // item.caption = caption;
+    // item.url = url;
+    // if(item.url) {
+    //     item.url = AWS.getGetSignedUrl(item.url);
+    // }
+
+    // const changed_item = FeedItem.update(item, {where: id});
+    FeedItem.update(
+        { caption: caption, url: url },
+        { where: { id: id } }
+      )
+        .then(result =>
+          console.log("----------> G E I L ")
+        )
+        .catch(err =>
+            console.log("----------> B Ä Ä Ä Ä ")
+        )
+
+    // saved_item.url = AWS.getGetSignedUrl(saved_item.url);
+    res.status(200).send("Ok");
+    // res.status(201).send(saved_item);
 });
 
 
