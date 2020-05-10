@@ -37,38 +37,44 @@ router.patch('/:id',
     async (req: Request, res: Response) => {
         //@TODO try it yourself
     let { id } = req.params;
-    // const item = await FeedItem.findByPk(id);
-    // if ( !item ) {
-    //     return res.status(404)
-    //               .send(`Item not found`);
-    //   }
+    const item = await FeedItem.findByPk(id);
+    if ( !item ) {
+        return res.status(404)
+                  .send(`Item not found`);
+      }
+
     let { caption, url } = req.body;
-    
     if ( !(caption && url ) ) {
       return res.status(400)
                 .send(`name and url required`);
     }
+
     // item.caption = caption;
     // item.url = url;
-    // if(item.url) {
-    //     item.url = AWS.getGetSignedUrl(item.url);
-    // }
 
-    // const changed_item = FeedItem.update(item, {where: id});
-    FeedItem.update(
-        { caption: caption, url: url },
-        { where: { id: id } }
-      )
-        .then(result =>
-          console.log("----------> G E I L ")
-        )
-        .catch(err =>
-            console.log("----------> B Ä Ä Ä Ä ")
-        )
+    item.update({url: url, caption: caption}).then(() => {
+        if(item.url) {
+            item.url = AWS.getGetSignedUrl(item.url);
+        }
+        res.status(200).send(item);
+    });
 
     // saved_item.url = AWS.getGetSignedUrl(saved_item.url);
-    res.status(200).send("Ok");
     // res.status(201).send(saved_item);
+
+    //KD 200505 my first (unelegant) solution
+    // FeedItem.update(
+    //     { caption: caption, url: url },
+    //     { where: { id: id } }
+    //   )
+    //     .then(result =>
+    //       console.log("----------> G E I L ")
+    //     )
+    //     .catch(err =>
+    //         console.log("----------> B Ä Ä Ä Ä ")
+    //     )
+    // res.status(200).send("Ok");
+
 });
 
 
@@ -78,6 +84,15 @@ router.get('/signed-url/:fileName',
     async (req: Request, res: Response) => {
     let { fileName } = req.params;
     const url = AWS.getPutSignedUrl(fileName);
+    res.status(201).send({url: url});
+});
+
+//KD 200507 get a signed url to get an item from the bucket (url can be used from any browser without authentication for 5 min)
+router.get('/get-signed-url/:fileName', 
+    requireAuth, 
+    async (req: Request, res: Response) => {
+    let { fileName } = req.params;
+    const url = AWS.getGetSignedUrl(fileName);
     res.status(201).send({url: url});
 });
 

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "90c44738-86d0-440c-ac60-dcb7b70fb9e8",
+		"_postman_id": "d6e2b7e2-7a24-4d46-8b01-32d29623b19a",
 		"name": "udacity-c2-restapi",
 		"description": "Requests that should work!",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -15,7 +15,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ad01629-c164-41ef-9d19-0a5fd13274af",
+								"id": "ebbd6c99-8c3f-4cff-a0ae-08f2622b2268",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -37,10 +37,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{host}}/api/v0/feed",
 							"host": [
@@ -62,7 +58,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ad01629-c164-41ef-9d19-0a5fd13274af",
+								"id": "daa52049-4da7-4e0d-ae8a-f99a8dbcc357",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -84,10 +80,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{host}}/api/v0/feed/:id",
 							"host": [
@@ -121,10 +113,6 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
 									"raw": "{{host}}/api/v0/feed/:id",
 									"host": [
@@ -191,7 +179,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4fa0ec55-4fb1-4eda-a7a3-08af62324ede",
+								"id": "68b32d23-761a-4775-9051-8c7852147edb",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -245,7 +233,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b3737edc-f79e-4823-b2c5-e84e6359e173",
+								"id": "a8956783-cfbc-4e02-801a-be2705261e1c",
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
 									"    pm.response.to.have.status(400);",
@@ -300,7 +288,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5524b249-cd4d-4e75-91c4-b2f690d53d44",
+								"id": "afca7097-2b24-4b90-b9c4-c23955f8f85a",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
@@ -359,7 +347,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "41cd51df-9472-4d8d-9177-b4f54d6a8530",
+								"id": "a0253b5b-2ddf-4eb7-a3ac-be3bc67bdd6b",
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
 									"    pm.response.to.have.status(400);",
@@ -409,7 +397,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Unauthorized",
@@ -420,7 +409,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ad01629-c164-41ef-9d19-0a5fd13274af",
+								"id": "8b04b3c0-87fe-4c52-90e5-7dcc4d35b337",
 								"exec": [
 									"pm.test(\"Status code is 401\", function () {",
 									"    pm.response.to.have.status(401);",
@@ -456,7 +445,8 @@
 					},
 					"response": []
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
 		},
 		{
 			"name": "Authorized",
@@ -467,7 +457,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ad01629-c164-41ef-9d19-0a5fd13274af",
+								"id": "fa468e1d-8d68-4f51-ab0a-12aa18f49891",
 								"exec": [
 									"pm.test(\"Status code is 400\", function () {",
 									"    pm.response.to.have.status(400);",
@@ -486,8 +476,11 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -498,17 +491,20 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{}"
+							"raw": "{\n\t\"caption\": \"Ich will dich!!!!\",\n\t\"url\": \"Test.jpg\"\n}"
 						},
 						"url": {
-							"raw": "{{host}}/api/v0/feed",
+							"raw": "{{host}}/api/v0/feed//get-signed-url/TW.JPG",
 							"host": [
 								"{{host}}"
 							],
 							"path": [
 								"api",
 								"v0",
-								"feed"
+								"feed",
+								"",
+								"get-signed-url",
+								"TW.JPG"
 							]
 						},
 						"description": "Post a new item to the feed"
@@ -521,7 +517,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "1ad01629-c164-41ef-9d19-0a5fd13274af",
+								"id": "dfe0399c-c7be-41a6-a1d2-73621e4b21c7",
 								"exec": [
 									"pm.test(\"Status code is 201\", function () {",
 									"    pm.response.to.have.status(201);",
@@ -552,7 +548,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"caption\": \"Hello\",\n    \"url\": \"test.jpg\"\n}"
+							"raw": "{\n    \"caption\": \"Heiner\",\n    \"url\": \"test.jpg\"\n}"
 						},
 						"url": {
 							"raw": "{{host}}/api/v0/feed",
@@ -566,6 +562,94 @@
 							]
 						},
 						"description": "Post a new item to the feed"
+					},
+					"response": []
+				},
+				{
+					"name": "KD/putFile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "492dfa5c-3355-47d6-8e75-a1d0006725a0",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"The post returns a new item with an id\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.id).to.not.eql(null);",
+									"});",
+									"",
+									"pm.test(\"Response time is less than 200ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "image/jpeg"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/Users/klausdresbach/Dropbox/Sonstiges/DEVK/Challenge/Galerie/JapGarten.jpg"
+							}
+						},
+						"url": {
+							"raw": "https://udagram-taufi-dev.s3.us-east-2.amazonaws.com/JapGarten.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARZHG7MQPSCUYFUHO%2F20200507%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20200507T193706Z&X-Amz-Expires=300&X-Amz-Signature=86925c4d59c0b75336491855e89eeae41932467c8c94e06c6e71e417e2182003&X-Amz-SignedHeaders=host",
+							"protocol": "https",
+							"host": [
+								"udagram-taufi-dev",
+								"s3",
+								"us-east-2",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"JapGarten.jpg"
+							],
+							"query": [
+								{
+									"key": "X-Amz-Algorithm",
+									"value": "AWS4-HMAC-SHA256"
+								},
+								{
+									"key": "X-Amz-Credential",
+									"value": "AKIARZHG7MQPSCUYFUHO%2F20200507%2Fus-east-2%2Fs3%2Faws4_request"
+								},
+								{
+									"key": "X-Amz-Date",
+									"value": "20200507T193706Z"
+								},
+								{
+									"key": "X-Amz-Expires",
+									"value": "300"
+								},
+								{
+									"key": "X-Amz-Signature",
+									"value": "86925c4d59c0b75336491855e89eeae41932467c8c94e06c6e71e417e2182003"
+								},
+								{
+									"key": "X-Amz-SignedHeaders",
+									"value": "host"
+								}
+							]
+						},
+						"description": "Hier verwende ich die in KD/.../signed-url erhaltene url, um meine Datei hochzuladen. \nEingaben:\nAuthorizaion: No Auth\nContent-Type: image/jpeg\nUnter \"Body\" bei \"binary\" die Datei hochladen"
 					},
 					"response": []
 				}
@@ -584,7 +668,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "65e7c108-0985-4ca7-9613-0898f005cf76",
+						"id": "86a0ae31-148c-416c-9f08-c4ce494f361d",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -594,21 +678,141 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "cf28f76e-ffbb-4199-b636-1c080a86e465",
+						"id": "839da85b-f159-4041-8fa1-f6f95ee4fe60",
 						"type": "text/javascript",
 						"exec": [
 							""
 						]
 					}
 				}
-			]
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "KD/api/v0/feed/get-signed-url",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fa468e1d-8d68-4f51-ab0a-12aa18f49891",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"body includes a message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.not.eql(null);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/api/v0/feed//get-signed-url/JapGarten.jpg",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v0",
+						"feed",
+						"",
+						"get-signed-url",
+						"JapGarten.jpg"
+					]
+				},
+				"description": "So erhalte ich die signed url zu einem Foto, das bereits im Bucket ist (selbstgeschriebene Methode in feed.router.ts). Den link kann ich dann 5 Min in einem beliebigen Browser nutzen."
+			},
+			"response": []
+		},
+		{
+			"name": "KD/api/v0/feed/signed-url",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3a8a167a-46cd-4183-9ca2-a75ca19d4390",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"body includes a message\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.message).to.not.eql(null);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/api/v0/feed/signed-url/JapGarten.jpg",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v0",
+						"feed",
+						"signed-url",
+						"JapGarten.jpg"
+					]
+				},
+				"description": "So erhalte ich die signed url, mit der ich dann eine Datei in den Bucket laden kann. Dieses hält 5 Minuten. Die Datei kann ich dann mit put (siehe KD/putFile) hochladen."
+			},
+			"response": []
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "bc5d9c7a-7a6b-49ed-af16-206e17e8732f",
+				"id": "86b17051-b3ae-402c-808a-83054e4c9bfe",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -618,7 +822,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "a7cb0174-2461-42e2-979e-1b5922eea0fe",
+				"id": "f6fa0cf9-04c3-4b22-9784-3413deb88825",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -633,5 +837,6 @@
 			"value": "http://localhost:8080",
 			"type": "string"
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
