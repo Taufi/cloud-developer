@@ -7,26 +7,34 @@ import * as jwt from 'jsonwebtoken';
 import { NextFunction } from 'connect';
 
 import * as EmailValidator from 'email-validator';
+import { config } from '../../../../config/config';
 
 const router: Router = Router();
 
 // const newLocal = "";
 async function generatePassword(plainTextPassword: string): Promise<string> {
     //@TODO Use Bcrypt to Generated Salted Hashed Passwords
-    //KD 200509 Ergänzung, damit die TypeScript -> Javascript Conversion gelingt (script: tsc)
-    return "Taufi"
+    const saltRounds = 10;
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hash = await bcrypt.hash(plainTextPassword, salt);
+    return hash;
+    //KD 200509 Ergänzung, bevor ich die Methode schrieb, damit die TypeScript -> Javascript Conversion gelingt (script: tsc)
+    // return "Taufi"
 }
 
 async function comparePasswords(plainTextPassword: string, hash: string): Promise<boolean> {
     //@TODO Use Bcrypt to Compare your password to your Salted Hashed Password
-   //KD 200509 Ergänzung, damit die TypeScript -> Javascript Conversion gelingt (script: tsc)
-    return true
+    const compare = await bcrypt.compare(plainTextPassword, hash);
+    return compare
+    //KD 200509 Ergänzung, bevor ich die Methode schrieb, damit die TypeScript -> Javascript Conversion gelingt (script: tsc)
+    // return true
 }
 
 function generateJWT(user: User): string {
     //@TODO Use jwt to create a new JWT Payload containing
-    //KD 200509 Ergänzung, damit die TypeScript -> Javascript Conversion gelingt (script: tsc)
-    return "Taufi" 
+    return jwt.sign(user, config.jwt.secret);
+    //KD 200509 Ergänzung, bevor ich die Methode schrieb, damit die TypeScript -> Javascript Conversion gelingt (script: tsc)
+    // return "Taufi" 
 }
 
 export function requireAuth(req: Request, res: Response, next: NextFunction) {
