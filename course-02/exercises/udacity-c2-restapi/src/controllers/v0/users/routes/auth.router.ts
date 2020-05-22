@@ -52,7 +52,7 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
     
     const token = token_bearer[1];
 
-    return jwt.verify(token, "hello", (err, decoded) => {
+    return jwt.verify(token, config.jwt.secret, (err, decoded) => {
       if (err) {
         return res.status(500).send({ auth: false, message: 'Failed to authenticate.' });
       }
@@ -96,6 +96,7 @@ router.post('/login', async (req: Request, res: Response) => {
     // Generate JWT
     const jwt = generateJWT(user);
 
+    //KD 200522 nach login und register (s.u.) wird hier der token versandt. Siehe in udacity-c2-frontend unter 200522
     res.status(200).send({ auth: true, token: jwt, user: user.short()});
 });
 
@@ -137,6 +138,7 @@ router.post('/', async (req: Request, res: Response) => {
     // Generate JWT
     const jwt = generateJWT(savedUser);
 
+    //KD 200522 s.o.
     res.status(201).send({token: jwt, user: savedUser.short()});
 });
 

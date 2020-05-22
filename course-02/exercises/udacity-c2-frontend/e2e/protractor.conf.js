@@ -13,6 +13,7 @@ exports.config = {
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
+  // baseUrl: 'http://udagram-taufi-dev-dev.us-east-2.elasticbeanstalk.com/api/v0',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,

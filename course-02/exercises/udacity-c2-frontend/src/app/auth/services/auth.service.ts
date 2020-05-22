@@ -18,6 +18,7 @@ export class AuthService {
 
   initToken() {
     const token = localStorage.getItem(JWT_LOCALSTORE_KEY);
+    console.log("Tanja sieht ----> " + token);
     const user = <User> JSON.parse(localStorage.getItem(USER_LOCALSTORE_KEY));
     if (token && user) {
       this.setTokenAndUser(token, user);
@@ -26,6 +27,7 @@ export class AuthService {
 
   setTokenAndUser(token: string, user: User) {
     localStorage.setItem(JWT_LOCALSTORE_KEY, token);
+    console.log("Tanja sieht noch einmal ----> " + token);
     localStorage.setItem(USER_LOCALSTORE_KEY, JSON.stringify(user));
     this.api.setAuthToken(token);
     this.currentUser$.next(user);
@@ -35,8 +37,8 @@ export class AuthService {
     return this.api.post('/users/auth/login',
               {email: email, password: password})
               .then((res) => {
-                this.setTokenAndUser(res.token, res.user);
-                return res;
+                this.setTokenAndUser(res.token, res.user); //KD 200522 hier wird der token gesetzt, der vom server kommt    
+                return res;                                  // siehe udacity-c2-restapi 200522
               })
               .catch((e) => { throw e; });
       // return user !== undefined;
@@ -51,8 +53,8 @@ export class AuthService {
     return this.api.post('/users/auth/',
               {email: user.email, password: password})
               .then((res) => {
-                this.setTokenAndUser(res.token, res.user);
-                return res;
+                this.setTokenAndUser(res.token, res.user); //KD 200522 hier wird der token gesetzt, der vom server kommt    
+                return res;                                 // siehe udacity-c2-restapi 200522
               })
               .catch((e) => { throw e; });
   }
